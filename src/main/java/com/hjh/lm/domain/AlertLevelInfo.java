@@ -1,4 +1,4 @@
-package com.hjh.domain;
+package com.hjh.lm.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +15,8 @@ public class AlertLevelInfo {
     private Long alertLevelInfoId;
     // 报警级别 1-primary 2-senior 3-high
     private Integer alertLevel;
-    // 报警类型列表
-    private List<Integer> alertTypes;
+    // 报警类型列表 逗号分隔
+    private String alertTypes;
     // 报警方式
     private String alertMethod;
     // 短信报警电话短信
@@ -40,11 +40,11 @@ public class AlertLevelInfo {
         this.alertLevel = alertLevel;
     }
 
-    public List<Integer> getAlertTypes() {
+    public String getAlertTypes() {
         return alertTypes;
     }
 
-    public void setAlertTypes(List<Integer> alertTypes) {
+    public void setAlertTypes(String alertTypes) {
         this.alertTypes = alertTypes;
     }
 

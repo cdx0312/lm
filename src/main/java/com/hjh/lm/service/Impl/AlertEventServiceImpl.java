@@ -1,11 +1,12 @@
-package com.hjh.service.Impl;
+package com.hjh.lm.service.Impl;
 
-import com.hjh.dao.AlertEventRepository;
-import com.hjh.domain.AlertEvent;
-import com.hjh.service.AlertEventService;
+import com.hjh.lm.dao.AlertEventRepository;
+import com.hjh.lm.domain.AlertEvent;
+import com.hjh.lm.service.AlertEventService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -14,6 +15,8 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Service
 public class AlertEventServiceImpl implements AlertEventService {
 
     @Autowired
@@ -52,6 +55,11 @@ public class AlertEventServiceImpl implements AlertEventService {
         });
 
         return alertEventList;
+    }
+
+    @Override
+    public void save(AlertEvent alertEvent) {
+        alertEventRepository.save(alertEvent);
     }
 
 

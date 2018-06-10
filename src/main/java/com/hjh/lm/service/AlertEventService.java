@@ -1,6 +1,6 @@
-package com.hjh.service;
+package com.hjh.lm.service;
 
-import com.hjh.domain.AlertEvent;
+import com.hjh.lm.domain.AlertEvent;
 
 import java.util.List;
 
@@ -14,5 +14,7 @@ public interface AlertEventService {
      * @return 报警事件列表
      */
     List<AlertEvent> getAllAlertRecords(String liftId, Integer alertReason, Integer state, Integer process);
+
+    void save(AlertEvent alertEvent);
 
 }
