@@ -19,8 +19,13 @@ import java.util.List;
 @Service
 public class AlertEventServiceImpl implements AlertEventService {
 
+    // 使用构造器注入repo
+    private final AlertEventRepository alertEventRepository;
+
     @Autowired
-    private AlertEventRepository alertEventRepository;
+    public AlertEventServiceImpl(AlertEventRepository alertEventRepository) {
+        this.alertEventRepository = alertEventRepository;
+    }
 
     /**
      * 根据电梯编号，报警内容，报警状态和处理状态来查询报警记录
@@ -31,6 +36,7 @@ public class AlertEventServiceImpl implements AlertEventService {
      * @return 报警事件列表
      */
     public List<AlertEvent> getAllAlertRecords(String liftId, Integer alertReason, Integer state, Integer process) {
+        // 重写dao层的findAll方法，实现多个条件的查找
         List<AlertEvent> alertEventList = alertEventRepository.findAll(new Specification<AlertEvent>() {
             @Override
             public Predicate toPredicate(Root<AlertEvent> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
@@ -57,6 +63,10 @@ public class AlertEventServiceImpl implements AlertEventService {
         return alertEventList;
     }
 
+    /**
+     * 存储alertEvent到数据库中
+     * @param alertEvent 报警事件实例
+     */
     @Override
     public void save(AlertEvent alertEvent) {
         alertEventRepository.save(alertEvent);

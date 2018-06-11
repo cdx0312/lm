@@ -1,8 +1,7 @@
-package com.hjh.lm.dao;
+package com.hjh.lm.service;
 
 import com.hjh.lm.LmApplication;
 import com.hjh.lm.domain.AlertEvent;
-import com.hjh.lm.service.AlertEventService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import java.util.Date;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = LmApplication.class)
-public class TestAlertEventController {
+public class TestAlertEventService {
     @Autowired
     private AlertEventService alertEventService;
 

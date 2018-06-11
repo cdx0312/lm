@@ -16,6 +16,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 
+/**
+ * 测试alertEventController的接口
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = LmApplication.class)
 public class alertEventControllerTest {
@@ -31,7 +34,7 @@ public class alertEventControllerTest {
 
     @Test
     public void getAllAlertRecords() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.post("/alertEvent/getRecords").param("liftId", "1")
+        mockMvc.perform(MockMvcRequestBuilders.get("/alertEvent/getRecords").param("liftId", "2")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())

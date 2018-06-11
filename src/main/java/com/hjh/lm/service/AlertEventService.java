@@ -4,6 +4,9 @@ import com.hjh.lm.domain.AlertEvent;
 
 import java.util.List;
 
+/**
+ * 报警事件相关的接口
+ */
 public interface AlertEventService {
     /**
      * 根据电梯编号，报警内容，报警状态和处理状态来查询报警记录
@@ -15,6 +18,10 @@ public interface AlertEventService {
      */
     List<AlertEvent> getAllAlertRecords(String liftId, Integer alertReason, Integer state, Integer process);
 
+    /**
+     * 存储alertEvent到数据库中
+     * @param alertEvent 报警事件实例
+     */
     void save(AlertEvent alertEvent);
 
 }

@@ -11,13 +11,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * 报警事件Controller，处理报警事件相关的web请求
+ */
 @Controller
 @RequestMapping("/alertEvent")
 public class alertEventController {
 
-    @Autowired
-    private AlertEventService alertEventService;
+    // 注入报警事件Service,采用构造器注入
+    private final AlertEventService alertEventService;
 
+    @Autowired
+    public alertEventController(AlertEventService alertEventService) {
+        this.alertEventService = alertEventService;
+    }
+
+    /**
+     * 根据查询条件，获取满足条件的所有报警事件
+     * @param liftId 电梯ID
+     * @param alertReason 报警原因
+     * @param state 报警状态
+     * @param process 报警事件处理进程
+     * @return 返回JSON数据
+     */
     @RequestMapping(value = "/getRecords", method = RequestMethod.GET)
     @ResponseBody
     public List<AlertEvent> getAllAlertRecords(String liftId, Integer alertReason, Integer state, Integer process) {
