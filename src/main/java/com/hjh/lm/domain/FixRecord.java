@@ -1,8 +1,11 @@
 package com.hjh.lm.domain;
 
+import com.alibaba.fastjson.JSON;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -29,6 +32,20 @@ public class FixRecord {
     private Date fixDate;
     // 维修结果
     private String fixResult;
+
+    public static void main(String[] args) {
+        FixRecord fixRecord = new FixRecord();
+        fixRecord.setLiftId("dafda");
+        fixRecord.setFixContent("djfkaldjlkf");
+        fixRecord.setCrashApperance("11");
+        fixRecord.setCrashReason("11");
+        fixRecord.setFixDate(new Date());
+        fixRecord.setReportTime(new Date());
+        fixRecord.setFixResult("11");
+        fixRecord.setReplance(true);
+        System.out.println(JSON.toJSONStringWithDateFormat(fixRecord, "yyyy-MM-dd"));
+        System.out.println(new Date());
+    }
 
     public Long getFixRecordId() {
         return fixRecordId;
