@@ -6,6 +6,7 @@ import com.hjh.lm.service.FixRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,14 +28,25 @@ public class FixRecordController {
         this.fixRecordService = fixRecordService;
     }
 
+    /**
+     * 存储前端传送的维修数据，字段会自动装载进入fixRecord中
+     * @param fixRecord 接收前端传送的维修数据的实体
+     */
     @ResponseBody
     @RequestMapping(value = "/repairRecord", method = RequestMethod.POST)
+    @CrossOrigin
     public void saveFixRecord(@Param("fixRecord") FixRecord fixRecord){
         fixRecordService.save(fixRecord);
     }
 
+    /**
+     * 根据电梯编号，从数据库中获取维修记录列表
+     * @param liftId 电梯编号
+     * @return 维修记录列表，如果liftID为空，则返回全部维修记录
+     */
     @RequestMapping(value = "/repairRecord", method = RequestMethod.GET)
     @ResponseBody
+    @CrossOrigin // 解决跨域
     public List<FixRecord> getFixRecordsByLiftId(String liftId){
         return fixRecordService.getFixRecordsByLiftId(liftId);
     }
