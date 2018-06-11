@@ -23,7 +23,7 @@ public class TestAlertEventService {
         alertEvent.setEndTime(new Date());
         alertEvent.setLiftId("1csds");
         alertEvent.setProcess(1);
-        alertEvent.setState(1);
+        alertEvent.setAlertState(1);
         alertEvent.setStartTime(new Date());
         alertEvent.setProcessor("aaaa");
         alertEventService.save(alertEvent);

@@ -21,7 +21,7 @@ public class AlertEvent {
     // 报警原因 ：1--轿厢报警按钮，2--非平层停梯，3--轿厢困人，4--轿厢冲顶，5--轿厢蹲底，6--开门走梯，7--安全回路故障，8--其他
     private Integer alertReason;
     // 报警事件状态 1--正在发生，2--已取消，3--误报警
-    private Integer state;
+    private Integer alertState;
     // 报警事件处理进程 1--未处理，2--已处理，3--处理中
     private Integer process;
     // 报警事件处理人
@@ -64,12 +64,12 @@ public class AlertEvent {
         this.alertReason = alertReason;
     }
 
-    public Integer getState() {
-        return state;
+    public Integer getAlertState() {
+        return alertState;
     }
 
-    public void setState(Integer state) {
-        this.state = state;
+    public void setAlertState(Integer alertState) {
+        this.alertState = alertState;
     }
 
     public Integer getProcess() {

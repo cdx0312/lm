@@ -27,14 +27,14 @@ public class alertEventController {
      * 根据查询条件，获取满足条件的所有报警事件
      * @param liftId 电梯ID
      * @param alertReason 报警原因
-     * @param state 报警状态
+     * @param alertState 报警状态
      * @param process 报警事件处理进程
      * @return 返回JSON数据
      */
     @RequestMapping(value = "/getRecords", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin
-    public List<AlertEvent> getAllAlertRecords(String liftId, Integer alertReason, Integer state, Integer process) {
-        return alertEventService.getAllAlertRecords(liftId, alertReason, state, process);
+    public List<AlertEvent> getAllAlertRecords(String liftId, Integer alertReason, Integer alertState, Integer process) {
+        return alertEventService.getAllAlertRecords(liftId, alertReason, alertState, process);
     }
 }

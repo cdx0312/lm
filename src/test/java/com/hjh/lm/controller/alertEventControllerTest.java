@@ -34,7 +34,7 @@ public class alertEventControllerTest {
 
     @Test
     public void getAllAlertRecords() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/alertEvent/getRecords").param("liftId", "2")
+        mockMvc.perform(MockMvcRequestBuilders.get("/alertEvent/getRecords").param("id", "1")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
