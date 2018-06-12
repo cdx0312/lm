@@ -4,6 +4,7 @@ import com.hjh.lm.domain.LiftInfo;
 import com.hjh.lm.domain.MaintainRecord;
 import com.hjh.lm.service.LiftInfoService;
 import com.hjh.lm.vo.LiftInfoVo;
+import com.hjh.lm.vo.LmResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +34,9 @@ public class LiftInfoController {
     @ResponseBody
     @RequestMapping(value = "/liftinfo", method = RequestMethod.POST)
     @CrossOrigin
-    public void saveLiftInfo(LiftInfo liftInfo){
+    public LmResult saveLiftInfo(LiftInfo liftInfo){
         liftInfoService.save(liftInfo);
+        return new LmResult("200", "save the liftInfo!");
     }
 
     /**
@@ -45,7 +47,14 @@ public class LiftInfoController {
     @RequestMapping(value = "/liftinfo", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin // 解决跨域
-    public List<LiftInfo> getLiftInfoByLiftInfoVo(LiftInfoVo liftInfoVo){
-        return liftInfoService.getAllLiftInfos(liftInfoVo);
+    public LmResult getLiftInfoByLiftInfoVo(LiftInfoVo liftInfoVo){
+        List<LiftInfo> liftInfoList = liftInfoService.getAllLiftInfos(liftInfoVo);
+        LmResult lmResult;
+        if (liftInfoList != null && liftInfoList.size() != 0) {
+            lmResult = new LmResult("200", "get the liftInfoList", liftInfoList);
+        } else {
+            lmResult = new LmResult("200", "the liftInfoList is empty");
+        }
+        return lmResult;
     }
 }

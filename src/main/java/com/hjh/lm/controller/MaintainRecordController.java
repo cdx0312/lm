@@ -4,6 +4,7 @@ import com.hjh.lm.domain.FixRecord;
 import com.hjh.lm.domain.MaintainRecord;
 import com.hjh.lm.service.FixRecordService;
 import com.hjh.lm.service.MaintainRecordService;
+import com.hjh.lm.vo.LmResult;
 import com.hjh.lm.vo.MaintainRecordVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -36,8 +37,9 @@ public class MaintainRecordController {
     @ResponseBody
     @RequestMapping(value = "/maintainregist", method = RequestMethod.POST)
     @CrossOrigin
-    public void saveMaintainRecord(MaintainRecord maintainRecord){
+    public LmResult saveMaintainRecord(MaintainRecord maintainRecord){
         maintainRecordService.save(maintainRecord);
+        return new LmResult("200", "save the maintainRecord");
     }
 
     /**
@@ -48,7 +50,14 @@ public class MaintainRecordController {
     @RequestMapping(value = "/maintainregist", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin // 解决跨域
-    public List<MaintainRecordVo> getMaintainRecordsByLiftId(String liftId){
-        return maintainRecordService.getMaintainRecordsByLiftId(liftId);
+    public LmResult getMaintainRecordsByLiftId(String liftId){
+        List<MaintainRecordVo> maintainRecordVoList = maintainRecordService.getMaintainRecordsByLiftId(liftId);
+        LmResult lmResult;
+        if (maintainRecordVoList != null && maintainRecordVoList.size() != 0) {
+            lmResult = new LmResult("200", "get the maintainRecordList", maintainRecordVoList);
+        } else {
+            lmResult = new LmResult("200", "the maintainRecordList is empty");
+        }
+        return lmResult;
     }
 }

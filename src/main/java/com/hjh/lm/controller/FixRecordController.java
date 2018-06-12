@@ -3,6 +3,7 @@ package com.hjh.lm.controller;
 import com.hjh.lm.domain.AlertEvent;
 import com.hjh.lm.domain.FixRecord;
 import com.hjh.lm.service.FixRecordService;
+import com.hjh.lm.vo.LmResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -35,9 +36,10 @@ public class FixRecordController {
     @ResponseBody
     @RequestMapping(value = "/repairRecord", method = RequestMethod.POST)
     @CrossOrigin
-    public String saveFixRecord(FixRecord fixRecord){
+    public LmResult saveFixRecord(FixRecord fixRecord){
+        LmResult lmResult = new LmResult("200", "add the fixRecord");
         fixRecordService.save(fixRecord);
-        return "success";
+        return lmResult;
     }
 
     /**
@@ -48,7 +50,14 @@ public class FixRecordController {
     @RequestMapping(value = "/repairRecord", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin // 解决跨域
-    public List<FixRecord> getFixRecordsByLiftId(@Param("liftid") String liftId){
-        return fixRecordService.getFixRecordsByLiftId(liftId);
+    public LmResult getFixRecordsByLiftId(@Param("liftid") String liftId){
+        List<FixRecord> fixRecordList = fixRecordService.getFixRecordsByLiftId(liftId);
+        LmResult lmResult;
+        if (fixRecordList != null && fixRecordList.size() != 0) {
+            lmResult = new LmResult("200", "get the fixRecordList", fixRecordList);
+        } else {
+            lmResult = new LmResult("200", "the fixRecorList is empty");
+        }
+        return lmResult;
     }
 }
