@@ -4,6 +4,7 @@ import com.hjh.lm.domain.FixRecord;
 import com.hjh.lm.domain.MaintainRecord;
 import com.hjh.lm.service.FixRecordService;
 import com.hjh.lm.service.MaintainRecordService;
+import com.hjh.lm.vo.MaintainRecordVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,7 @@ public class MaintainRecordController {
     @RequestMapping(value = "/maintainregist", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin // 解决跨域
-    public List<MaintainRecord> getMaintainRecordsByLiftId(String liftId){
+    public List<MaintainRecordVo> getMaintainRecordsByLiftId(String liftId){
         return maintainRecordService.getMaintainRecordsByLiftId(liftId);
     }
 }

@@ -2,6 +2,7 @@ package com.hjh.lm.service;
 
 import com.hjh.lm.domain.FixRecord;
 import com.hjh.lm.domain.MaintainRecord;
+import com.hjh.lm.vo.MaintainRecordVo;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface MaintainRecordService {
      * @param liftId 电梯编号
      * @return 保养记录列表
      */
-    List<MaintainRecord> getMaintainRecordsByLiftId(String liftId);
+    List<MaintainRecordVo> getMaintainRecordsByLiftId(String liftId);
 }

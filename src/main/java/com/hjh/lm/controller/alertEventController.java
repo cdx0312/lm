@@ -2,6 +2,7 @@ package com.hjh.lm.controller;
 
 import com.hjh.lm.domain.AlertEvent;
 import com.hjh.lm.service.AlertEventService;
+import com.hjh.lm.vo.AlertEventVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class alertEventController {
     @RequestMapping(value = "/getRecords", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin
-    public List<AlertEvent> getAllAlertRecords(String liftId, Integer alertReason, Integer alertState, Integer process) {
+    public List<AlertEventVo> getAllAlertRecords(String liftId, Integer alertReason, Integer alertState, Integer process) {
         return alertEventService.getAllAlertRecords(liftId, alertReason, alertState, process);
     }
 }

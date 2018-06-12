@@ -33,6 +33,7 @@ public class MaintainRecordControllerTest {
     @Test
     public void saveFixRecord() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/maintainregist").param("liftId", "11")
+                .param("liftType", "3")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())

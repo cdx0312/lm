@@ -1,6 +1,7 @@
 package com.hjh.lm.service;
 
 import com.hjh.lm.domain.AlertEvent;
+import com.hjh.lm.vo.AlertEventVo;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface AlertEventService {
      * @param process 处理状态
      * @return 报警事件列表
      */
-    List<AlertEvent> getAllAlertRecords(String liftId, Integer alertReason, Integer state, Integer process);
+    List<AlertEventVo> getAllAlertRecords(String liftId, Integer alertReason, Integer state, Integer process);
 
     /**
      * 存储alertEvent到数据库中

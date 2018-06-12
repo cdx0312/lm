@@ -1,4 +1,4 @@
-package com.hjh.lm.domain;
+package com.hjh.lm.vo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import java.util.Date;
  * 保养记录
  */
 @Entity
-public class MaintainRecord {
+public class MaintainRecordVo {
     @Id
     @GeneratedValue
     private Long maintainRecordId;
@@ -18,13 +18,14 @@ public class MaintainRecord {
     // 保养日期
     private Date maintainDate;
     //    电梯类型 1-乘客电梯，2-载货电梯，3-液压电梯，4-杂物电梯，5-自动扶梯，6-自动人行道
-    private Integer liftType;
+    private String liftType;
     // 安全隐患备注
     private String remark;
     // 保养单位
     private String maintainDept;
     // 保养结果
     private String maintainResult;
+
     // 使用单位
     private String liftDept;
 
@@ -76,11 +77,11 @@ public class MaintainRecord {
         this.maintainDate = maintainDate;
     }
 
-    public Integer getLiftType() {
+    public String getLiftType() {
         return liftType;
     }
 
-    public void setLiftType(Integer liftType) {
+    public void setLiftType(String liftType) {
         this.liftType = liftType;
     }
 
