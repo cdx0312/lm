@@ -35,9 +35,9 @@ public class FixRecordController {
     @ResponseBody
     @RequestMapping(value = "/repairRecord", method = RequestMethod.POST)
     @CrossOrigin
-    public void saveFixRecord(FixRecord fixRecord){
-
+    public String saveFixRecord(FixRecord fixRecord){
         fixRecordService.save(fixRecord);
+        return "success";
     }
 
     /**
@@ -49,7 +49,6 @@ public class FixRecordController {
     @ResponseBody
     @CrossOrigin // 解决跨域
     public List<FixRecord> getFixRecordsByLiftId(@Param("liftid") String liftId){
-
         return fixRecordService.getFixRecordsByLiftId(liftId);
     }
 }
