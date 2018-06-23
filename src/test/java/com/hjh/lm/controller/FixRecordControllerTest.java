@@ -34,7 +34,9 @@ public class FixRecordControllerTest {
 
     @Test
     public void saveFixRecord() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/repairRecord").param("liftId", "11")
+        mockMvc.perform(MockMvcRequestBuilders.post("/repairRecord")
+                .param("liftId", "11")
+                .param("isReplance", "1")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())

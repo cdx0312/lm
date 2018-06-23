@@ -3,6 +3,7 @@ package com.hjh.lm.controller;
 import com.hjh.lm.domain.LiftInfo;
 import com.hjh.lm.domain.MaintainRecord;
 import com.hjh.lm.service.LiftInfoService;
+import com.hjh.lm.vo.LiftInfoPositions;
 import com.hjh.lm.vo.LiftInfoVo;
 import com.hjh.lm.vo.LmResult;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +34,7 @@ public class LiftInfoController {
      * @param liftInfo 接收前端传送的设备信息数据的实体
      */
     @ResponseBody
-    @RequestMapping(value = "/liftinfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/liftinfo/save", method = RequestMethod.POST)
     @CrossOrigin
     public LmResult saveLiftInfo(LiftInfo liftInfo){
         liftInfoService.save(liftInfo);
@@ -44,7 +46,7 @@ public class LiftInfoController {
      * @param liftInfoVo 查询条件
      * @return 电梯设备信息，如果查询条件均为空，则返回全部设备记录
      */
-    @RequestMapping(value = "/liftinfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/liftinfo/get", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin // 解决跨域
     public LmResult getLiftInfoByLiftInfoVo(LiftInfoVo liftInfoVo){
@@ -52,6 +54,30 @@ public class LiftInfoController {
         LmResult lmResult;
         if (liftInfoList != null && liftInfoList.size() != 0) {
             lmResult = new LmResult("200", "get the liftInfoList", liftInfoList);
+        } else {
+            lmResult = new LmResult("200", "the liftInfoList is empty");
+        }
+        return lmResult;
+    }
+
+    /**
+     * 获取所有电梯设备的经纬度
+     * @return 返回LmResult
+     */
+    @RequestMapping(value = "/liftinfo/getLiftPosition", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin // 解决跨域
+    public LmResult getLiftPositions(){
+        List<LiftInfo> liftInfoList = liftInfoService.getAllLiftInfos(new LiftInfoVo(null, null, null));
+        LmResult lmResult;
+        // 将liftInfoList中的坐标重写为两个，存入liftPosInfoList中
+        List<LiftInfoPositions> liftPosInfoList = new ArrayList<>();
+        for (LiftInfo liftInfo : liftInfoList) {
+            LiftInfoPositions liftInfoPosition = new LiftInfoPositions(liftInfo);
+            liftPosInfoList.add(liftInfoPosition);
+        }
+        if (liftPosInfoList != null && liftPosInfoList.size() != 0) {
+            lmResult = new LmResult("200", "get the liftInfoList", liftPosInfoList);
         } else {
             lmResult = new LmResult("200", "the liftInfoList is empty");
         }

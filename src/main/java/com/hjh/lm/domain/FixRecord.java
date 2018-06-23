@@ -27,7 +27,7 @@ public class FixRecord {
     // 维修内容
     private String fixContent;
     // 是否更换零件
-    private Boolean isReplance;
+    private String isReplance;
     // 维修时间
     private Date fixDate;
     // 维修结果
@@ -42,7 +42,7 @@ public class FixRecord {
         fixRecord.setFixDate(new Date());
         fixRecord.setReportTime(new Date());
         fixRecord.setFixResult("11");
-        fixRecord.setReplance(true);
+        fixRecord.setIsReplance("是");
         System.out.println(JSON.toJSONStringWithDateFormat(fixRecord, "yyyy-MM-dd"));
         System.out.println(new Date());
     }
@@ -95,12 +95,12 @@ public class FixRecord {
         this.fixContent = fixContent;
     }
 
-    public Boolean getReplance() {
+    public String getIsReplance() {
         return isReplance;
     }
 
-    public void setReplance(Boolean replance) {
-        isReplance = replance;
+    public void setIsReplance(String isReplance) {
+        this.isReplance = isReplance;
     }
 
     public Date getFixDate() {
@@ -117,5 +117,20 @@ public class FixRecord {
 
     public void setFixResult(String fixResult) {
         this.fixResult = fixResult;
+    }
+
+    @Override
+    public String toString() {
+        return "FixRecord{" +
+                "fixRecordId=" + fixRecordId +
+                ", liftId='" + liftId + '\'' +
+                ", reportTime=" + reportTime +
+                ", crashReason='" + crashReason + '\'' +
+                ", crashApperance='" + crashApperance + '\'' +
+                ", fixContent='" + fixContent + '\'' +
+                ", isReplance='" + isReplance + '\'' +
+                ", fixDate=" + fixDate +
+                ", fixResult='" + fixResult + '\'' +
+                '}';
     }
 }
