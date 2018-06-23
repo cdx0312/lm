@@ -66,4 +66,15 @@ public class LiftInfoServiceImpl implements LiftInfoService {
         });
         return liftInfos;
     }
+
+    /**
+     * 根据电梯编号删除电梯
+     * @param liftId 电梯编号
+     * @return 返回删除的电梯的信息
+     */
+    @Override
+    public void removeLiftByLiftId(String liftId) {
+        if (StringUtils.isNotBlank(liftId))
+            liftInfoRepository.deleteByLiftId(liftId);
+    }
 }

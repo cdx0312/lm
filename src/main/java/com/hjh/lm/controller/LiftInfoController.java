@@ -83,4 +83,18 @@ public class LiftInfoController {
         }
         return lmResult;
     }
+
+    /**
+     * 根据电梯ID删除ID
+     * @param liftId 电梯ID
+     * @return LmResult
+     */
+    @RequestMapping(value = "/liftinfo/removeLiftByLiftId", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin // 解决跨域
+    public LmResult removeLiftByLiftId(String liftId) {
+        liftInfoService.removeLiftByLiftId(liftId);
+        return new LmResult("200", "remove the lift on the database");
+    }
+
 }

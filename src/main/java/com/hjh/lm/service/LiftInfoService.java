@@ -23,4 +23,11 @@ public interface LiftInfoService {
      */
     List<LiftInfo> getAllLiftInfos(LiftInfoVo liftInfoVo);
 
+    /**
+     * 根据电梯编号删除电梯
+     * @param liftId 电梯编号
+     * @return 返回删除的电梯的信息
+     */
+    void removeLiftByLiftId(String liftId);
+
 }
